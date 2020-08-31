@@ -2,6 +2,7 @@
 
 namespace App\Domain\Service;
 
+use App\Domain\Data\MessageData;
 use App\Domain\Service\BaseService;
 use App\Domain\Repository\MessageRepository;
 

@@ -5,6 +5,12 @@ namespace App\Domain\Repository;
 use PDO;
 
 class MessageRepository extends BaseRepository {
+    /**
+     * @param PDO
+     */
+    public function __construct(PDO $connection) {
+       $this->connection = $connection;
+    }
 
     /**
      * @param string
@@ -29,10 +35,10 @@ class MessageRepository extends BaseRepository {
      * @return array
      */
     public function selectMessagesByRecipient (string $recipient) {
-        $query = 'SELECT sender, recipient, body,
+        $query = 'SELECT sender, recipient, body
 				  FROM messages
 				  WHERE recipient = :recipient
-				  ORDER BY m.time_stamp';
+				  ORDER BY time_stamp';
 
 
         $statement = $this->connection->prepare($query);

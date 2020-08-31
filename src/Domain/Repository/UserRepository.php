@@ -17,7 +17,7 @@ class UserRepository extends BaseRepository {
      * @return int
      */
     public function insertUser(string $username): int {
-        $query = 'INSERT INTO users (ussername) VALUES (:username)';
+        $query = 'INSERT INTO users (username) VALUES (:username)';
 
         $statement = $this->connection->prepare($query);
         $statement -> bindParam(':username', $username);
