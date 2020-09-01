@@ -25,6 +25,20 @@ class UserData implements JsonSerializable {
     }
 
     /**
+     * @return int
+     */
+    public function getId(): int {
+        return $this->id;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUsername(): string {
+        return $this->username;
+    }
+
+    /**
      * @return array
      */
     public function jsonSerialize() {

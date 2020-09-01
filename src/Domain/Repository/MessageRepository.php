@@ -35,19 +35,18 @@ class MessageRepository extends BaseRepository {
      * @return array
      */
     public function selectMessagesByRecipient (string $recipient) {
-        $query = 'SELECT sender, recipient, body
+        $query = 'SELECT id, sender, recipient, body
 				  FROM messages
 				  WHERE recipient = :recipient
-				  ORDER BY time_stamp';
-
+                  ORDER BY time_stamp';
 
         $statement = $this->connection->prepare($query);
         $statement->bindParam(':recipient', $recipient);
         $statement->execute();
         
-        $rows = $statement->fetchAll(\PDO::FETCH_ASSOC);
+        $messages = $statement->fetchAll();
         
-        return $rows;
+        return $messages;
 
 
     }

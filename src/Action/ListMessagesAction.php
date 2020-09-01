@@ -21,6 +21,6 @@ class ListMessagesAction extends BaseAction {
 
         $messages = $this->service->listMessagesByRecipient($data);
         
-        return $this->sendResponse($message);
+        return $this->sendResponse($messages);
     }
 }

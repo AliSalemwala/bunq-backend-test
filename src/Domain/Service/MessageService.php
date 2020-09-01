@@ -37,11 +37,12 @@ class MessageService extends BaseService {
         $messagesList = array();
 
         foreach($messages as $message) {
+            $id = $message['id'];
             $sender = $message['sender'];
             $recipient = $message['recipient'];
             $body = $message['body'];
 
-            array_push($messagesList, new MessageData ($sender, $recipient, $body));
+            array_push($messagesList, new MessageData ($id, $sender, $recipient, $body));
         }
 
         return $messagesList;

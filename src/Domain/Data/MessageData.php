@@ -30,11 +30,32 @@ class MessageData implements JsonSerializable {
      * @param string
      * @param string
      */
-    public function __construct(string $sender, string $recipient, string $body) {
+    public function __construct(int $id, string $sender, string $recipient, string $body) {
         $this->id = $id;
         $this->sender = $sender;
         $this->recipient = $recipient;
         $this->body = $body;
+    }
+
+    /**
+     * @return string
+     */
+    public function getSender(): string {
+        return $this->sender;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRecipient(): string {
+        return $this->recipient;
+    }
+
+    /**
+     * @return string
+     */
+    public function getBody(): string {
+        return $this->body;
     }
 
     /**
