@@ -4,6 +4,7 @@ use DI\ContainerBuilder;
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
+// ContainerBuilder builds a container, which is used to get the app
 $containerBuilder = new ContainerBuilder();
 $containerBuilder->addDefinitions(__DIR__ . '/container.php');
 $container = $containerBuilder->build();

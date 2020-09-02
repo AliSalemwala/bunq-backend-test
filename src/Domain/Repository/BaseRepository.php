@@ -11,7 +11,6 @@ class BaseRepository {
     private $connection;
 
     /**
-     * Constructor.
      * @param PDO
      */
     public function __construct(PDO $connection) {

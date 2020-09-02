@@ -10,11 +10,6 @@ date_default_timezone_set('Europe/Berlin');
 // Settings
 $settings = [];
 
-// Path settings
-$settings['root'] = dirname(__DIR__);
-$settings['temp'] = $settings['root'] . '/tmp';
-$settings['public'] = $settings['root'] . '/public';
-
 // Error Handling Middleware settings
 $settings['error'] = [
 
@@ -29,16 +24,6 @@ $settings['error'] = [
     // Display error details in error log
     'log_error_details' => true,
 ];
-
-/*
-$settings['logger'] = [
-    'logger' => [
-        'name' => 'chat-app',
-        'path' => 'php://stderr',
-        'level' => Logger::DEBUG,
-    ],
-];
-*/
 
 $settings['db'] = [
     'dbname' => '/../db/chat_app_database.sl3',

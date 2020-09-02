@@ -34,7 +34,7 @@ class MessageRepository extends BaseRepository {
      * @param string
      * @return array
      */
-    public function selectMessagesByRecipient (string $recipient) {
+    public function selectMessagesByRecipient (string $recipient): array {
         $query = 'SELECT id, sender, recipient, body
 				  FROM messages
 				  WHERE recipient = :recipient
@@ -47,7 +47,5 @@ class MessageRepository extends BaseRepository {
         $messages = $statement->fetchAll();
         
         return $messages;
-
-
     }
 }

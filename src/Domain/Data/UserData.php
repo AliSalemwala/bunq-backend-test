@@ -41,7 +41,7 @@ class UserData implements JsonSerializable {
     /**
      * @return array
      */
-    public function jsonSerialize() {
+    public function jsonSerialize(): array {
         return [
             'id' => $this->id,
             'username' => $this->username

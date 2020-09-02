@@ -5,11 +5,10 @@ namespace App\Response;
 use JsonSerializable;
 
 class ErrorPayload implements JsonSerializable {
-
     /**
      * @var string
      */
-    private $type;
+    private $errorType;
 
     /**
      * @var string
@@ -20,17 +19,17 @@ class ErrorPayload implements JsonSerializable {
      * @param string
      * @param string|null
      */
-    public function __construct(string $type, string $description = null) {
-        $this->type = $type;
+    public function __construct(string $errorType, string $description = null) {
+        $this->errorType = $errorType;
         $this->description = $description;
     }
 
     /**
      * @return array
      */
-    public function jsonSerialize() {
+    public function jsonSerialize(): array {
         $error = [
-            'type' => $this->type,
+            'errorType' => $this->errorType,
         ];
 
         if ($this->description !== null) {

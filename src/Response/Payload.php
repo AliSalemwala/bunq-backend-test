@@ -5,25 +5,22 @@ namespace App\Response;
 use JsonSerializable;
 
 class Payload implements JsonSerializable {
-
     /**
      * @var array|object|null
      */
     private $data;
 
     /**
-     * @param array|object|null     $data
+     * @param array|object|null
      */
-    public function __construct (
-        $data = null
-    ) {
+    public function __construct ($data = null) {
         $this->data = $data;
     }
 
     /**
      * @return array
      */
-    public function jsonSerialize() {
+    public function jsonSerialize(): array {
         $payload = [];
 
         if ($this->data !== null) {

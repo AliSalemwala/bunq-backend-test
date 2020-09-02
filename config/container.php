@@ -5,15 +5,18 @@ use Slim\Factory\AppFactory;
 use Slim\Middleware\ErrorMiddleware;
 
 return [
+    // The settings for this API
     'settings' => function () {
         return require __DIR__ . '/settings.php';
     },
 
+    // The App
     App::class => function (ContainerInterface $container) {
         AppFactory::setContainer($container);
         return AppFactory::create();
     },
 
+    // Used to catch errors
     ErrorMiddleware::class => function (ContainerInterface $container) {
         $app = $container->get(App::class);
         $errorSettings = $container->get('settings')['error'];
@@ -27,6 +30,7 @@ return [
         );
     },
     
+    // Used for database connection
     PDO::class => function (ContainerInterface $container) {
         $dbSettings = $container->get('settings')['db'];
 
@@ -38,5 +42,5 @@ return [
 		$conn -> exec('PRAGMA foreign_keys = ON;');
 
         return $conn;
-    },
+    }
 ];

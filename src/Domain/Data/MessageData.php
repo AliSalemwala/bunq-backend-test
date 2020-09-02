@@ -26,6 +26,7 @@ class MessageData implements JsonSerializable {
     private $body;
 
     /**
+     * @param int
      * @param string
      * @param string
      * @param string
@@ -61,7 +62,7 @@ class MessageData implements JsonSerializable {
     /**
      * @return array
      */
-    public function jsonSerialize() {
+    public function jsonSerialize(): array {
         return [
             'sender' => $this->sender,
             'recipient' => $this->recipient,

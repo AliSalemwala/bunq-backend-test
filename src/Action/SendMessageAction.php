@@ -6,13 +6,14 @@ use App\Action\BaseAction;
 use App\Domain\Service\MessageService;
 use Psr\Http\Message\ResponseInterface as Response;
 
-class CreateMessageAction extends BaseAction {
+class SendMessageAction extends BaseAction {
     /**
      * @param MessageService
      */
     public function __construct(MessageService $messageService) {
         $this->service = $messageService;
     }
+    
     /**
      * {@inheritdoc}
      */

@@ -13,6 +13,11 @@ use Psr\Http\Server\MiddlewareInterface;
 use Psr\Http\Server\RequestHandlerInterface as Handler;
 
 final class ExceptionMiddleware implements MiddlewareInterface {
+    /**
+     * @param Request
+     * @param Handler
+     * @return ResponseInterface
+     */
     public function process (Request $request, Handler $handler): ResponseInterface {
         try {
             return $handler->handle($request);
@@ -20,31 +25,31 @@ final class ExceptionMiddleware implements MiddlewareInterface {
 
             $description = $httpException->getMessage();
             $statusCode = $httpException->getCode();
-            $type;
+            $errorType;
 
             switch ($statusCode) {
                 case 400:
-                    $type = 'Bad Request';
+                    $errorType = 'Bad Request';
                 break;
                 case 401:
-                    $type = 'Unauthorized';
+                    $errorType = 'Unauthorized';
                 break;
                 case 403:
-                    $type = 'Insufficient Privileges';
+                    $errorType = 'Insufficient Privileges';
                 break;
                 case 404:
-                    $type = 'Resource Not Found';
+                    $errorType = 'Resource Not Found';
                 break;
                 case 405:
-                    $type = 'Not Allowed';
+                    $errorType = 'Not Allowed';
                 break;
                 case 501:
-                    $type = 'Not Implemented';
+                    $errorType = 'Not Implemented';
                 break;
-                default: $type = 'Unknown HTTP Exception';
+                default: $errorType = 'Unknown HTTP Exception';
             }
             
-            return $this->sendError($type, $description, $statusCode);
+            return $this->sendError($errorType, $description, $statusCode);
 
         } catch (PDOException $pdoException) {
 
@@ -54,25 +59,27 @@ final class ExceptionMiddleware implements MiddlewareInterface {
 
             $description = $exception->getMessage();
             $statusCode = $exception->getCode();
-            $type;
+            $errorType;
 
             switch ($statusCode) {
                 case 500:
-                    $type = 'Incorrect Parameters';
+                    $errorType = 'Incorrect Parameters';
                 break;
-                default: $type = 'Unknown Exception';
+                default: $errorType = 'Unknown Exception';
             }
 
-            return $this->sendError($type, $description);
+            return $this->sendError($errorType, $description);
         }
     }
 
     /**
      * @param array|object|null
+     * @param string
+     * @param int
      * @return Response
      */
-    protected function sendError($type, $error = null, $statusCode = 500): Response {
-        $json = json_encode(new ErrorPayload($type, $error));
+    protected function sendError($errorType, $error = null, $statusCode = 500): Response {
+        $json = json_encode(new ErrorPayload($errorType, $error));
         $response = new Response();
         $response->getBody()->write($json);
 

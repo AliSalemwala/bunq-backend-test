@@ -36,9 +36,9 @@ abstract class BaseAction {
     }
 
     /**
-     * @param Request $request
-     * @param Response $response
-     * @param array args
+     * @param Request
+     * @param Response
+     * @param array
      * @return Response
      */
     public function __invoke(Request $request, Response $response, $args): Response {

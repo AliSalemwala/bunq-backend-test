@@ -13,6 +13,7 @@ class ListMessagesAction extends BaseAction {
     public function __construct(MessageService $messageService) {
         $this->service = $messageService;
     }
+    
     /**
      * {@inheritdoc}
      */

@@ -22,6 +22,7 @@ abstract class BaseService {
      * @param array
      * @param string
      * @throws Exception
+     * @return string
      */
     protected function resolveParam (array $data, string $param): string {
         if (empty($data[$param])) {
